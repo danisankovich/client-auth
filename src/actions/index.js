@@ -8,19 +8,34 @@ export function signinUser({email, password}) {
   return function(dispatch) { //redux-thunk gives access to the dispatch
                               //function. it lets use return a function instead
                               //of an object from action creator
-      axios.post(`${ROOT_URL}/signin`, { email, password })
-        .then(response => {
-          dispatch({type: AUTH_USER});
+    axios.post(`${ROOT_URL}/signin`, { email, password })
+      .then(response => {
+        dispatch({type: AUTH_USER});
 
-          localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', response.data.token);
 
-          browserHistory.push('/information'); // success pushes you to /information.
+        browserHistory.push('/information'); // success pushes you to /information.
 
-        })
-        .catch(() => {
-          // catch does not take you to new page
-          dispatch(authError('EMAIL/PASSWORD combo incorrect'));
-        })
+      })
+      .catch(() => {
+        // catch does not take you to new page
+        dispatch(authError('EMAIL/PASSWORD combo incorrect'));
+      })
+  }
+}
+
+export function signupUser({email, password}) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/signup`, {email, password})
+      .then(response => {
+        dispatch({type: AUTH_USER});
+
+        localStorage.setItem('token', response.data.token);
+
+        browserHistory.push('/information'); // success pushes you to /information.
+      }).catch((error) => {
+        dispatch(authError(error.response.data.error));
+      });
   }
 }
 
