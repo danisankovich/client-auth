@@ -9,6 +9,7 @@ import App from './components/app';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
 import Signout from './components/auth/signout';
+import Information from './components/information';
 
 import reducers from './reducers';
 
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route path='signin' component={Signin}></Route>
           <Route path='signup' component={Signup}></Route>
           <Route path='signout' component={Signout}></Route>
+          <Route path='information' component={Information}></Route>
         </Route>
     </Router>
   </Provider>
