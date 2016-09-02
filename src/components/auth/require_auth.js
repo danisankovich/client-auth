@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+// HIGHER ORDER COMPONENT
 
 //wraps other components to add this feature to it: feature => kicks out unauthed users
 export default function(ComposedComponent) {
